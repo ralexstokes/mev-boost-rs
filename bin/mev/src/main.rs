@@ -15,7 +15,6 @@ const MINIMAL_PRESET_NOTICE: &str =
 #[derive(Debug, Parser)]
 #[clap(
         author,
-        name = "mev",
         about = "utilities for block space",
         version = SHORT_VERSION,
         long_version = LONG_VERSION,
