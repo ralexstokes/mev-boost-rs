@@ -60,7 +60,6 @@ pub const SHORT_VERSION: &str =
 /// Rustc:       1.82.0
 /// Features:    boost,build,default,mev_boost_rs,mev_build_rs,mev_relay_rs,relay,reth
 /// ```
-
 pub const LONG_VERSION: &str = concatcp!(
     "Version:     ",
     CARGO_PKG_VERSION,
