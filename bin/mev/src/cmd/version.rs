@@ -1,5 +1,4 @@
 use const_format::{concatcp, str_index};
-use std::fmt;
 
 /// The latest version from Cargo.toml
 pub const CARGO_PKG_VERSION: &str = env!("CARGO_PKG_VERSION");
@@ -81,26 +80,6 @@ pub const LONG_VERSION: &str = concatcp!(
     VERGEN_CARGO_FEATURES
 );
 
-#[derive(Debug)]
-pub(crate) struct Version;
-
-impl Version {
-    #[must_use]
-    pub const fn short_version() -> &'static str {
-        SHORT_VERSION
-    }
-
-    #[must_use]
-    pub const fn long_version() -> &'static str {
-        LONG_VERSION
-    }
-}
-
-impl fmt::Display for Version {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        f.write_str(Self::long_version())
-    }
-}
 
 #[cfg(test)]
 mod tests {
@@ -108,19 +87,17 @@ mod tests {
 
     #[test]
     fn test_long_version_information() {
-        let long_version_info = Version::long_version();
-        assert!(long_version_info.contains("Version:"));
-        assert!(long_version_info.contains("Commit:"));
-        assert!(long_version_info.contains("Features:"));
-        assert!(long_version_info.contains("Built:"));
-        assert!(long_version_info.contains("Target:"));
+        assert!(LONG_VERSION.contains("Version:"));
+        assert!(LONG_VERSION.contains("Commit:"));
+        assert!(LONG_VERSION.contains("Features:"));
+        assert!(LONG_VERSION.contains("Built:"));
+        assert!(LONG_VERSION.contains("Target:"));
     }
 
     #[test]
     fn test_short_version_information() {
-        let short_version_info = Version::short_version();
-        assert!(short_version_info.contains(CARGO_PKG_VERSION));
-        assert!(short_version_info.contains("("));
-        assert!(short_version_info.contains(")"));
+        assert!(SHORT_VERSION.contains(CARGO_PKG_VERSION));
+        assert!(SHORT_VERSION.contains("("));
+        assert!(SHORT_VERSION.contains(")"));
     }
 }

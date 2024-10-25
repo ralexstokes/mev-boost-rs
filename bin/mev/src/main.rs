@@ -1,7 +1,7 @@
 mod cmd;
 
 use clap::{Parser, Subcommand};
-use cmd::version::Version;
+use cmd::version::{SHORT_VERSION, LONG_VERSION};
 use std::future::Future;
 use tokio::signal;
 use tracing::warn;
@@ -17,8 +17,8 @@ const MINIMAL_PRESET_NOTICE: &str =
         author,
         name = "mev",
         about = "utilities for block space",
-        version = Version::short_version(),
-        long_version = Version::long_version(),
+        version = SHORT_VERSION,
+        long_version = LONG_VERSION,
         long_about = None
     )]
 struct Cli {
