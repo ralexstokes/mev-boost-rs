@@ -5,3 +5,4 @@ pub mod build;
 pub mod config;
 #[cfg(feature = "relay")]
 pub mod relay;
+pub mod version;
