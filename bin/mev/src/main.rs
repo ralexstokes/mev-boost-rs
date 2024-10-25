@@ -1,11 +1,11 @@
 mod cmd;
 
 use clap::{Parser, Subcommand};
+use cmd::version::{SHORT_VERSION, LONG_VERSION};
 use std::future::Future;
 use tokio::signal;
 use tracing::warn;
 use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt};
-
 #[cfg(feature = "build")]
 use ::{clap::CommandFactory, eyre::OptionExt, std::path::PathBuf};
 
@@ -13,7 +13,13 @@ const MINIMAL_PRESET_NOTICE: &str =
     "`minimal-preset` feature is enabled. The `minimal` consensus preset is being used.";
 
 #[derive(Debug, Parser)]
-#[clap(author, version, about = "utilities for block space", long_about = None)]
+#[clap(
+        author,
+        about = "utilities for block space",
+        version = SHORT_VERSION,
+        long_version = LONG_VERSION,
+        long_about = None
+    )]
 struct Cli {
     #[clap(subcommand)]
     command: Commands,
@@ -25,9 +31,9 @@ enum Commands {
     Boost(cmd::boost::Command),
     #[cfg(feature = "build")]
     Build(cmd::build::Command),
+    Config(cmd::config::Command),
     #[cfg(feature = "relay")]
     Relay(cmd::relay::Command),
-    Config(cmd::config::Command),
 }
 
 fn setup_logging() {

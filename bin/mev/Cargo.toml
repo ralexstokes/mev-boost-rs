@@ -3,6 +3,7 @@ name = "mev"
 version.workspace = true
 edition = "2021"
 license = "MIT OR Apache-2.0"
+build = "build.rs"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
@@ -20,6 +21,7 @@ minimal-preset = [
 ]
 
 [dependencies]
+const_format = { workspace = true }
 tokio = { workspace = true, features = ["full"] }
 tracing = { workspace = true }
 tracing-subscriber = { workspace = true, features = ["env-filter"] }
@@ -36,3 +38,6 @@ eyre = { workspace = true }
 
 ethereum-consensus = { workspace = true }
 reth = { workspace = true, optional = true, features = ["jemalloc"] }
+
+[build-dependencies]
+vergen = { version = "9.0.1", features = ["build", "cargo", "rustc"] }
