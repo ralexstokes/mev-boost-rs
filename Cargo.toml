@@ -40,6 +40,7 @@ alloy = { version = "0.4.2", features = [
     "signer-mnemonic",
 ] }
 
+const_format = "0.2.33"
 futures = "0.3.21"
 tokio = "1.0"
 tokio-stream = "0.1.15"
